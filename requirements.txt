@@ -4,3 +4,4 @@ groq==0.4.2
 openai==1.13.3
 google-generativeai==0.4.0
 anthropic==0.34.2
+pytefas==0.1.6

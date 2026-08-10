@@ -19,6 +19,19 @@ Once the bot is running, use the following commands:
 - `/portfolio` (Fetches live market data and lists your current P&L)
 - `/settime 09:30 18:00` (Sets your personal daily report schedule to 09:30 and 18:00)
 
+## 🔒 Privacy & Access Control
+- **AI Privacy Note:** If you configure an AI API key (Groq/OpenAI/Claude/Gemini), your portfolio data (tickers, amounts, and prices) will be sent to that provider to generate the insight. If you leave the API key blank, no data leaves your server.
+- **Access Control:** By default, anyone who finds your bot can use it (Public Demo Mode). To restrict it to yourself, open `.env` and set `ALLOWED_USER_IDS` to your Telegram User ID.
+
+---
+
+## 💻 Local Installation (For Developers)
+Want to run the bot on your own computer instead of the cloud?
+1. Clone the repository: `git clone https://github.com/cadakerem/portfolio-ai.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Copy `.env.example` to `.env` and fill in your keys.
+4. Run the bot: `python main.py`
+
 ---
 
 ## ☁️ How to Install on a Cloud Server
