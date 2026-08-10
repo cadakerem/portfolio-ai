@@ -79,6 +79,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
             return f"\n\n🤖 *AI Analizi (Groq):* {insight}"
             
     except Exception as e:
-        print(f"AI API Error: {e}")
+        import logging
+        logging.error(f"AI API Error: {e}")
         
     return ""

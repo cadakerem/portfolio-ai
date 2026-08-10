@@ -1,4 +1,5 @@
-# Portfolio AI 📊
+# 📈 Portfolio AI (Telegram Finance Bot)
+![Bot Screenshot](https://raw.githubusercontent.com/cadakerem/portfolio-ai/master/screenshot.jpg)
 
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
@@ -39,10 +40,11 @@ To keep this bot running without keeping your computer on, we recommend deployin
 
 *Note: PythonAnywhere's free tier requires you to occasionally restart the script. For true 24/7 uninterrupted uptime, a $5/month "Hacker" plan or running it on a local Raspberry Pi/VPS is required.*
 
-### Step 1: Get Your Bot Token
+### Step 1: Get Your Private Bot Token
+You need to create your own Telegram Bot so it runs privately just for you.
 1. Open Telegram and search for `@BotFather`.
-2. Type `/newbot` to create a new bot and give it a name.
-3. Copy the **HTTP API Token** provided by BotFather.
+2. Send `/newbot` and follow the instructions to create your bot.
+3. BotFather will give you a **HTTP API Token** (e.g. `12345:ABCDE`). Copy it.
 
 ### Step 2: Upload to PythonAnywhere
 1. Go to [PythonAnywhere.com](https://www.pythonanywhere.com/) and create a free Beginner account.
