@@ -31,7 +31,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                     "content": prompt,
                 }
             ],
-            model="llama3-8b-8192",
+            model="llama-3.3-70b-versatile",
             temperature=0.5,
             max_tokens=150
         )
