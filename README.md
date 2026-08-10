@@ -6,7 +6,7 @@ Manage your Stocks and TEFAS Mutual Funds by chatting with your bot and track yo
 ## 🚀 Features
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
-- **Automated Daily Reports:** Sends you a complete portfolio summary every morning (10:15) and evening (17:45) automatically.
+- **Automated Daily Reports:** Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).
 - **SQLite Database:** Lightweight local database, zero setup required.
 - **Weighted Average Cost:** Automatically calculates your new average cost if you buy the same asset multiple times at different prices.
 - **Modular Architecture:** Clean code structure divided into core logic for easy contributions.
@@ -17,6 +17,7 @@ Once the bot is running, use the following commands:
 - `/add MAC 5000 0.12` (Adds 5000 shares of MAC fund at 0.12 TL cost)
 - `/remove THYAO.IS` (Removes the asset from your portfolio)
 - `/portfolio` (Fetches live market data and lists your current P&L)
+- `/settime 09:30 18:00` (Sets your personal daily report schedule to 09:30 and 18:00)
 
 ---
 

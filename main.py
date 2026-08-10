@@ -1,9 +1,9 @@
 import telebot
-import schedule
 import time
 import threading
+from datetime import datetime
 from core.config import TOKEN
-from core.database import init_db, add_or_update_asset, remove_asset, get_portfolio, get_all_users
+from core.database import init_db, add_or_update_asset, remove_asset, get_portfolio, get_all_users, set_user_schedule, get_users_by_time
 from core.finance import fetch_tefas_funds, get_current_price
 
 bot = telebot.TeleBot(TOKEN)
@@ -20,7 +20,9 @@ def send_welcome(message):
         "➖ `/remove <TICKER>`\n"
         "Example: `/remove AAPL`\n\n"
         "💼 `/portfolio`\n"
-        "Shows your overall portfolio P&L."
+        "Shows your overall portfolio P&L.\n\n"
+        "⏰ `/settime <MORNING> <EVENING>`\n"
+        "Example: `/settime 10:15 17:45`"
     )
     bot.reply_to(message, text, parse_mode='Markdown')
 
@@ -113,8 +115,32 @@ def view_portfolio_command(message):
     report = generate_portfolio_report(user_id)
     bot.send_message(message.chat.id, report, parse_mode='Markdown')
 
+@bot.message_handler(commands=['settime'])
+def set_time_command(message):
+    try:
+        parts = message.text.split()
+        if len(parts) != 3:
+            bot.reply_to(message, "⚠️ Invalid format. Usage: `/settime 10:15 17:45`", parse_mode='Markdown')
+            return
+
+        morning_time = parts[1]
+        evening_time = parts[2]
+        user_id = message.from_user.id
+        
+        # Basic validation
+        if len(morning_time) != 5 or len(evening_time) != 5 or ":" not in morning_time or ":" not in evening_time:
+            bot.reply_to(message, "⚠️ Invalid time format. Please use HH:MM format like `10:15`.", parse_mode='Markdown')
+            return
+
+        set_user_schedule(user_id, morning_time, evening_time)
+        bot.reply_to(message, f"⏰ Schedule updated! You will receive daily reports at {morning_time} and {evening_time}.", parse_mode='Markdown')
+
+    except Exception as e:
+        bot.reply_to(message, f"❌ An error occurred: {str(e)}")
+
 def send_scheduled_reports():
-    users = get_all_users()
+    now = datetime.now().strftime("%H:%M")
+    users = get_users_by_time(now)
     for user_id in users:
         try:
             report = generate_portfolio_report(user_id)
@@ -125,15 +151,16 @@ def send_scheduled_reports():
 
 def schedule_checker():
     while True:
-        schedule.run_pending()
-        time.sleep(1)
-
-# Schedule tasks
-schedule.every().day.at("10:15").do(send_scheduled_reports)
-schedule.every().day.at("17:45").do(send_scheduled_reports)
+        # Check at the start of every minute
+        now = datetime.now()
+        if now.second == 0:
+            send_scheduled_reports()
+            time.sleep(60) # Sleep for a minute after sending
+        else:
+            time.sleep(1)
 
 if __name__ == '__main__':
-    print("Starting scheduler...")
+    print("Starting dynamic scheduler...")
     threading.Thread(target=schedule_checker, daemon=True).start()
     
     print("Bot is running...")
