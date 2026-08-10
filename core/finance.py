@@ -1,7 +1,7 @@
 import yfinance as yf
 
 def is_fund_code(ticker: str) -> bool:
-    return len(ticker) == 3 and ticker.isalpha()
+    return len(ticker) == 3 and ticker.isalnum()
 
 def is_stock_code(ticker: str) -> bool:
     return not is_fund_code(ticker)
