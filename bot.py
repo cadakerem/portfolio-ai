@@ -122,13 +122,39 @@ def view_portfolio(message):
     total_value = 0
     total_cost = 0
     response = "💼 *PORTFÖY ÖZETİ*\n\n"
+    
+    # TEFAS Verilerini Toplu Çek (Gerekirse)
+    tefas_funds = [r[0] for r in rows if len(r[0]) == 3 and r[0].isalpha()]
+    df_tefas = None
+    if tefas_funds:
+        import pytefas
+        from datetime import datetime, timedelta
+        crawler = pytefas.Crawler()
+        bugun = datetime.now().strftime('%Y-%m-%d')
+        bas = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+        try:
+            df_tefas = crawler.fetch(start=bas, end=bugun)
+        except:
+            pass
 
     for row in rows:
         ticker, amount, avg_price = row
         try:
-            # Canlı fiyatı yfinance ile çek
-            stock = yf.Ticker(ticker)
-            current_price = stock.fast_info.last_price
+            current_price = None
+            
+            # TEFAS Fonu Kontrolü
+            if len(ticker) == 3 and ticker.isalpha():
+                if df_tefas is not None and not df_tefas.empty:
+                    fund_data = df_tefas[df_tefas['fund_code'] == ticker]
+                    if not fund_data.empty:
+                        # En güncel fiyata göre sırala
+                        fund_data = fund_data.sort_values('date')
+                        current_price = float(fund_data['price'].iloc[-1])
+            
+            # Eğer TEFAS'ta bulunamadıysa veya hisse ise (Yfinance)
+            if current_price is None:
+                stock = yf.Ticker(ticker)
+                current_price = float(stock.fast_info.last_price)
             
             asset_value = current_price * amount
             asset_cost = avg_price * amount
