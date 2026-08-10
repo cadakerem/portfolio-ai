@@ -1,7 +1,6 @@
-# Portfolio AI Lite 📊
+# Portfolio AI 📊
 
-An **Open Source Portfolio Manager** built directly on top of Telegram. No complex APIs, no clunky Excel files.
-Manage your Stocks and TEFAS Mutual Funds by chatting with your bot and track your live P&L (Profit & Loss) instantly from your phone.
+A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
 ## 🚀 Features
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.

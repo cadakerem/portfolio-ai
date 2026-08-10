@@ -12,7 +12,7 @@ init_db()
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     text = (
-        "📊 *Welcome to Portfolio AI Lite!*\n\n"
+        "📊 *Welcome to Portfolio AI!*\n\n"
         "Manage your portfolio easily via text messages. "
         "Use the following commands:\n\n"
         "➕ `/add <TICKER> <AMOUNT> <COST>`\n"
