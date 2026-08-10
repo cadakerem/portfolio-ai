@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Portfolio AI Lite</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  
+  <link rel="stylesheet" href="css/style.css?v=1.0" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo">Portfolio AI <span style="color:var(--green)">Lite</span></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="app-main">
+    <div class="portfolio-container">
+      <div class="portfolio-summary">
+        <div class="summary-label">Toplam Varlık</div>
+        <div class="summary-value" id="total-value">₺0,00</div>
+        <div class="summary-change" id="total-change">Günlük: —</div>
+      </div>
+
+      <div class="section-title">
+        <span>Varlıklarım</span>
+        <button id="btn-add-asset" class="btn-add">+ Ekle</button>
+      </div>
+
+      <div class="asset-list" id="asset-list">
+        <!-- Varlıklar buraya eklenecek -->
+        <div class="empty-state">
+          Portföyünüz şu an boş. Yeni bir varlık ekleyerek başlayın.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js?v=1.0"></script>
+</body>
+</html>
