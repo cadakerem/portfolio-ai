@@ -129,8 +129,8 @@ def schedule_checker():
         time.sleep(1)
 
 # Schedule tasks
-schedule.every().day.at("09:00").do(send_scheduled_reports)
-schedule.every().day.at("18:30").do(send_scheduled_reports)
+schedule.every().day.at("10:15").do(send_scheduled_reports)
+schedule.every().day.at("17:45").do(send_scheduled_reports)
 
 if __name__ == '__main__':
     print("Starting scheduler...")
