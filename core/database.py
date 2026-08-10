@@ -50,3 +50,11 @@ def get_portfolio(user_id):
     rows = cursor.fetchall()
     conn.close()
     return rows
+
+def get_all_users():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT DISTINCT user_id FROM portfolio")
+    users = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    return users

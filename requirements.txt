@@ -1,3 +1,3 @@
 pyTelegramBotAPI==4.14.0
 yfinance==0.2.32
-pytefas==0.1.1
+pytefas==0.1.1schedule==1.2.1

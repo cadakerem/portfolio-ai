@@ -6,6 +6,7 @@ Manage your Stocks and TEFAS Mutual Funds by chatting with your bot and track yo
 ## 🚀 Features
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
+- **Automated Daily Reports:** Sends you a complete portfolio summary every morning (09:00) and evening (18:30) automatically.
 - **SQLite Database:** Lightweight local database, zero setup required.
 - **Weighted Average Cost:** Automatically calculates your new average cost if you buy the same asset multiple times at different prices.
 - **Modular Architecture:** Clean code structure divided into core logic for easy contributions.

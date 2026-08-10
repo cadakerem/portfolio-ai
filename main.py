@@ -1,6 +1,9 @@
 import telebot
+import schedule
+import time
+import threading
 from core.config import TOKEN
-from core.database import init_db, add_or_update_asset, remove_asset, get_portfolio
+from core.database import init_db, add_or_update_asset, remove_asset, get_portfolio, get_all_users
 from core.finance import fetch_tefas_funds, get_current_price
 
 bot = telebot.TeleBot(TOKEN)
@@ -59,15 +62,10 @@ def remove_command(message):
     except Exception as e:
         bot.reply_to(message, f"❌ An error occurred: {str(e)}")
 
-@bot.message_handler(commands=['portfolio'])
-def view_portfolio_command(message):
-    user_id = message.from_user.id
-    bot.reply_to(message, "⏳ Fetching live prices, please wait...")
-
+def generate_portfolio_report(user_id):
     rows = get_portfolio(user_id)
     if not rows:
-        bot.reply_to(message, "📁 Your portfolio is currently empty. Use `/add` to add assets.", parse_mode='Markdown')
-        return
+        return "📁 Your portfolio is currently empty. Use `/add` to add assets."
 
     # Fetch TEFAS funds in bulk if needed
     tefas_funds = [r[0] for r in rows if len(r[0]) == 3 and r[0].isalpha()]
@@ -105,9 +103,38 @@ def view_portfolio_command(message):
     response += f"💰 *Total Invested:* {total_cost:.2f}\n"
     response += f"🏦 *Current Value:* {total_value:.2f}\n"
     response += f"{total_icon} *Net P&L:* {total_profit:.2f} ({total_profit_pct:.2f}%)"
+    return response
 
-    bot.send_message(message.chat.id, response, parse_mode='Markdown')
+
+@bot.message_handler(commands=['portfolio'])
+def view_portfolio_command(message):
+    user_id = message.from_user.id
+    bot.reply_to(message, "⏳ Fetching live prices, please wait...")
+    report = generate_portfolio_report(user_id)
+    bot.send_message(message.chat.id, report, parse_mode='Markdown')
+
+def send_scheduled_reports():
+    users = get_all_users()
+    for user_id in users:
+        try:
+            report = generate_portfolio_report(user_id)
+            if "📁 Your portfolio is currently empty" not in report:
+                bot.send_message(user_id, f"🌅 *Daily Automatic Report*\n\n{report}", parse_mode='Markdown')
+        except Exception as e:
+            print(f"Failed to send report to {user_id}: {e}")
+
+def schedule_checker():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Schedule tasks
+schedule.every().day.at("09:00").do(send_scheduled_reports)
+schedule.every().day.at("18:30").do(send_scheduled_reports)
 
 if __name__ == '__main__':
+    print("Starting scheduler...")
+    threading.Thread(target=schedule_checker, daemon=True).start()
+    
     print("Bot is running...")
     bot.infinity_polling()
