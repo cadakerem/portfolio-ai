@@ -5,6 +5,7 @@ from datetime import datetime
 from core.config import TOKEN
 from core.database import init_db, add_or_update_asset, remove_asset, get_portfolio, get_all_users, set_user_schedule, get_users_by_time
 from core.finance import fetch_tefas_funds, get_current_price
+from core.ai import get_portfolio_insight
 
 bot = telebot.TeleBot(TOKEN)
 init_db()
@@ -105,6 +106,11 @@ def generate_portfolio_report(user_id):
     response += f"💰 *Total Invested:* {total_cost:.2f}\n"
     response += f"🏦 *Current Value:* {total_value:.2f}\n"
     response += f"{total_icon} *Net P&L:* {total_profit:.2f} ({total_profit_pct:.2f}%)"
+    
+    # Get AI Insight
+    insight = get_portfolio_insight(response)
+    response += insight
+    
     return response
 
 

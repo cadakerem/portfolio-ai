@@ -3,6 +3,7 @@
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
 ## 🚀 Features
+- **AI Portfolio Analysis (Optional):** Integrates with Groq (Llama 3) to give you a smart 1-sentence financial insight at the end of your reports. Fully plug-and-play, you can swap it for OpenAI or Claude if you prefer.
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
 - **Automated Daily Reports:** Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).
@@ -36,8 +37,9 @@ To keep this bot running 24/7 even when your computer is off, we highly recommen
    `pip install -r requirements.txt`
 
 ### Step 3: Run It
-1. In the same Bash console, run the following commands:
+1. In the same Bash console, run the following commands (If you want AI features, add your Groq API Key):
    `export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"`
+   `export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"`
    `python main.py`
 2. Once you see "Bot is running..." on the screen, you're done!
 3. Go to your bot on Telegram and type `/start`.
