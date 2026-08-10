@@ -3,7 +3,7 @@
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
 ## 🚀 Features
-- **AI Portfolio Analysis (Optional):** Integrates with Groq (Llama 3) to give you a smart 1-sentence financial insight at the end of your reports. Fully plug-and-play, you can swap it for OpenAI or Claude if you prefer.
+- **AI Portfolio Analysis (Optional):** Integrates dynamically with Groq, OpenAI (ChatGPT), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast, but you can plug in OpenAI or Gemini for deeper analysis!
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
 - **Automated Daily Reports:** Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).
@@ -37,9 +37,14 @@ To keep this bot running 24/7 even when your computer is off, we highly recommen
    `pip install -r requirements.txt`
 
 ### Step 3: Run It
-1. In the same Bash console, run the following commands (If you want AI features, add your Groq API Key):
+1. In the same Bash console, run the following commands (If you want AI features, export the API key of your choice):
    `export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"`
-   `export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"`
+   
+   *Optional AI Providers (Choose one):*
+   `export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"` (Free & Fast)
+   `export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"` (Detailed Analysis with ChatGPT)
+   `export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE"` (Google Gemini)
+   
    `python main.py`
 2. Once you see "Bot is running..." on the screen, you're done!
 3. Go to your bot on Telegram and type `/start`.

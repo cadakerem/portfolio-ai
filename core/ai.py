@@ -1,44 +1,68 @@
 import os
-from core.config import GROQ_API_KEY
-from groq import Groq
+from core.config import GROQ_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY
 
 def get_portfolio_insight(portfolio_text: str) -> str:
     """
-    Analyzes the portfolio text and returns a 1-2 sentence insight using Groq API.
-    If no API key is provided, returns an empty string silently.
+    Analyzes the portfolio text and returns a 1-2 sentence insight.
+    It automatically detects which API key is provided and uses the corresponding AI provider.
+    Priority: OpenAI -> Gemini -> Groq
     """
-    if not GROQ_API_KEY or GROQ_API_KEY == "YOUR_GROQ_API_KEY":
-        return ""
-        
-    try:
-        client = Groq(api_key=GROQ_API_KEY)
-        
-        prompt = (
-            "Aşağıdaki portföy özetine bakarak, profesyonel ve kısa bir finansal yorum yap. "
-            "Sadece 1-2 cümle olsun. Fazla riskli duran bir şey varsa uyar, kâr iyiyse tebrik et. "
-            "Markdown formatı kullanma. Sadece doğrudan metni ver.\n\n"
-            f"Portföy Özeti:\n{portfolio_text}"
-        )
+    prompt = (
+        "Aşağıdaki portföy özetine bakarak, profesyonel ve kısa bir finansal yorum yap. "
+        "Sadece 1-2 cümle olsun. Fazla riskli duran bir şey varsa uyar, kâr iyiyse tebrik et. "
+        "Markdown formatı kullanma. Sadece doğrudan metni ver.\n\n"
+        f"Portföy Özeti:\n{portfolio_text}"
+    )
+    system_prompt = "Sen çok tecrübeli ve profesyonel bir portföy yöneticisisin. Cevapların kısa, net ve yapay zeka olduğunu belli etmeyen doğal bir üslupta olmalı."
+    
+    insight = ""
 
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "system",
-                    "content": "Sen çok tecrübeli ve profesyonel bir portföy yöneticisisin. Cevapların kısa, net ve yapay zeka olduğunu belli etmeyen doğal bir üslupta olmalı."
-                },
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ],
-            model="llama-3.3-70b-versatile",
-            temperature=0.5,
-            max_tokens=150
-        )
-        
-        insight = chat_completion.choices[0].message.content.strip()
-        return f"\n\n🤖 *AI Analizi:* {insight}"
-        
+    try:
+        # 1. OpenAI (ChatGPT)
+        if OPENAI_API_KEY and OPENAI_API_KEY != "YOUR_OPENAI_API_KEY":
+            from openai import OpenAI
+            client = OpenAI(api_key=OPENAI_API_KEY)
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.5,
+                max_tokens=150
+            )
+            insight = response.choices[0].message.content.strip()
+            return f"\n\n🤖 *AI Analizi (ChatGPT):* {insight}"
+
+        # 2. Google Gemini
+        elif GEMINI_API_KEY and GEMINI_API_KEY != "YOUR_GEMINI_API_KEY":
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_API_KEY)
+            model = genai.GenerativeModel(
+                'gemini-1.5-flash',
+                system_instruction=system_prompt
+            )
+            response = model.generate_content(prompt)
+            insight = response.text.strip()
+            return f"\n\n🤖 *AI Analizi (Gemini):* {insight}"
+
+        # 3. Groq (Llama)
+        elif GROQ_API_KEY and GROQ_API_KEY != "YOUR_GROQ_API_KEY":
+            from groq import Groq
+            client = Groq(api_key=GROQ_API_KEY)
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt}
+                ],
+                model="llama-3.3-70b-versatile",
+                temperature=0.5,
+                max_tokens=150
+            )
+            insight = chat_completion.choices[0].message.content.strip()
+            return f"\n\n🤖 *AI Analizi (Groq):* {insight}"
+            
     except Exception as e:
-        print(f"Groq API Error: {e}")
-        return ""
+        print(f"AI API Error: {e}")
+        
+    return ""
