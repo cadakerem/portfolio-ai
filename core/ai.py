@@ -8,12 +8,12 @@ def get_portfolio_insight(portfolio_text: str) -> str:
     Priority: OpenAI -> Gemini -> Groq
     """
     prompt = (
-        "Aşağıdaki portföy özetine bakarak, profesyonel ve kısa bir finansal yorum yap. "
-        "Sadece 1-2 cümle olsun. Fazla riskli duran bir şey varsa uyar, kâr iyiyse tebrik et. "
-        "Markdown formatı kullanma. Sadece doğrudan metni ver.\n\n"
-        f"Portföy Özeti:\n{portfolio_text}"
+        "Based on the following portfolio summary, provide a professional and concise financial insight. "
+        "Keep it to 1-2 sentences. Warn if something looks too risky, and congratulate if the profit is good. "
+        "Do not use markdown formatting. Just provide the direct text.\n\n"
+        f"Portfolio Summary:\n{portfolio_text}"
     )
-    system_prompt = "Sen çok tecrübeli ve profesyonel bir portföy yöneticisisin. Cevapların kısa, net ve yapay zeka olduğunu belli etmeyen doğal bir üslupta olmalı."
+    system_prompt = "You are a highly experienced and professional portfolio manager. Your responses must be concise, clear, and sound like a natural human rather than an AI."
     
     insight = ""
 
@@ -32,7 +32,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                 max_tokens=150
             )
             insight = response.choices[0].message.content.strip()
-            return f"\n\n🤖 *AI Analizi (ChatGPT):* {insight}"
+            return f"\n\n🤖 *AI Insight (ChatGPT):* {insight}"
 
         # 2. Anthropic (Claude)
         elif ANTHROPIC_API_KEY and ANTHROPIC_API_KEY != "YOUR_ANTHROPIC_API_KEY":
@@ -48,7 +48,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                 ]
             )
             insight = response.content[0].text.strip()
-            return f"\n\n🤖 *AI Analizi (Claude):* {insight}"
+            return f"\n\n🤖 *AI Insight (Claude):* {insight}"
 
         # 3. Google Gemini
         elif GEMINI_API_KEY and GEMINI_API_KEY != "YOUR_GEMINI_API_KEY":
@@ -60,7 +60,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
             )
             response = model.generate_content(prompt)
             insight = response.text.strip()
-            return f"\n\n🤖 *AI Analizi (Gemini):* {insight}"
+            return f"\n\n🤖 *AI Insight (Gemini):* {insight}"
 
         # 4. Groq (Llama)
         elif GROQ_API_KEY and GROQ_API_KEY != "YOUR_GROQ_API_KEY":
@@ -76,7 +76,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                 max_tokens=150
             )
             insight = chat_completion.choices[0].message.content.strip()
-            return f"\n\n🤖 *AI Analizi (Groq):* {insight}"
+            return f"\n\n🤖 *AI Insight (Groq):* {insight}"
             
     except Exception as e:
         import logging

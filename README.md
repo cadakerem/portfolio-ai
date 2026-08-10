@@ -29,7 +29,7 @@ Once the bot is running, use the following commands:
 ## 🧠 Customizing AI Personality
 Want the AI to talk like a Wall Street broker, a cautious advisor, or maybe even Yoda? You can easily change its system prompt!
 1. Open the file `core/ai.py`
-2. Find line 16: `system_prompt = "Sen çok tecrübeli ve profesyonel bir portföy yöneticisisin..."`
+2. Find line 16: `system_prompt = "You are a highly experienced and professional portfolio manager..."`
 3. Change this text to give your AI whatever personality or instruction set you prefer.
 
 ---
