@@ -1,5 +1,4 @@
 # 📈 Portfolio AI (Telegram Finance Bot)
-![Bot Screenshot](https://raw.githubusercontent.com/cadakerem/portfolio-ai/master/screenshot.jpg)
 
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
@@ -22,7 +21,10 @@ Once the bot is running, use the following commands:
 
 ## 🔒 Privacy & Access Control
 - **AI Privacy Note:** If you configure an AI API key (Groq/OpenAI/Claude/Gemini), your portfolio data (tickers, amounts, and prices) will be sent to that provider to generate the insight. If you leave the API key blank, no data leaves your server.
-- **Access Control:** By default, anyone who finds your bot can use it (Public Demo Mode). To restrict it to yourself, open `.env` and set `ALLOWED_USER_IDS` to your Telegram User ID.
+- **Access Control (Private Mode):** By default, anyone who finds your bot can use it. To restrict it to just yourself:
+  1. Open Telegram and message `@userinfobot` to get your numeric **User ID** (e.g. `123456789`).
+  2. Open the `.env` file and set `ALLOWED_USER_IDS=123456789` (you can separate multiple IDs with commas).
+  3. Now, the bot will completely ignore commands from any unauthorized strangers!
 
 ---
 
