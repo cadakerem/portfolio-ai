@@ -37,16 +37,22 @@ To keep this bot running 24/7 even when your computer is off, we highly recommen
    `pip install -r requirements.txt`
 
 ### Step 3: Run It
-1. In the same Bash console, run the following commands (If you want AI features, export the API key of your choice):
-   `export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"`
-   
-   *Optional AI Providers (Choose one):*
-   `export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"` (Free & Fast)
-   `export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"` (ChatGPT)
-   `export ANTHROPIC_API_KEY="OPTIONAL_ANTHROPIC_KEY_HERE"` (Claude 3.5 Sonnet)
-   `export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE"` (Google Gemini)
-   
-   `python main.py`
+1. In the same Bash console, run the following commands. You only need the Telegram token to start, but you can optionally add one AI API key of your choice to enable smart insights.
+
+```bash
+# 1. Export your Telegram Token (Required)
+export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"
+
+# 2. Export ONE of the following AI API Keys (Optional)
+export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"
+# export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"
+# export ANTHROPIC_API_KEY="OPTIONAL_ANTHROPIC_KEY_HERE"
+# export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE"
+
+# 3. Start the bot
+python main.py
+```
+
 2. Once you see "Bot is running..." on the screen, you're done!
 3. Go to your bot on Telegram and type `/start`.
 
