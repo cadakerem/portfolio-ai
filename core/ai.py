@@ -1,5 +1,5 @@
 import os
-from core.config import GROQ_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY
+from core.config import GROQ_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY, ANTHROPIC_API_KEY
 
 def get_portfolio_insight(portfolio_text: str) -> str:
     """
@@ -34,7 +34,23 @@ def get_portfolio_insight(portfolio_text: str) -> str:
             insight = response.choices[0].message.content.strip()
             return f"\n\n🤖 *AI Analizi (ChatGPT):* {insight}"
 
-        # 2. Google Gemini
+        # 2. Anthropic (Claude)
+        elif ANTHROPIC_API_KEY and ANTHROPIC_API_KEY != "YOUR_ANTHROPIC_API_KEY":
+            from anthropic import Anthropic
+            client = Anthropic(api_key=ANTHROPIC_API_KEY)
+            response = client.messages.create(
+                model="claude-3-5-sonnet-20240620",
+                max_tokens=150,
+                temperature=0.5,
+                system=system_prompt,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            insight = response.content[0].text.strip()
+            return f"\n\n🤖 *AI Analizi (Claude):* {insight}"
+
+        # 3. Google Gemini
         elif GEMINI_API_KEY and GEMINI_API_KEY != "YOUR_GEMINI_API_KEY":
             import google.generativeai as genai
             genai.configure(api_key=GEMINI_API_KEY)
@@ -46,7 +62,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
             insight = response.text.strip()
             return f"\n\n🤖 *AI Analizi (Gemini):* {insight}"
 
-        # 3. Groq (Llama)
+        # 4. Groq (Llama)
         elif GROQ_API_KEY and GROQ_API_KEY != "YOUR_GROQ_API_KEY":
             from groq import Groq
             client = Groq(api_key=GROQ_API_KEY)

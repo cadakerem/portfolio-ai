@@ -3,7 +3,7 @@
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
 ## 🚀 Features
-- **AI Portfolio Analysis (Optional):** Integrates dynamically with Groq, OpenAI (ChatGPT), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast, but you can plug in OpenAI or Gemini for deeper analysis!
+- **AI Portfolio Analysis (Optional):** Integrates dynamically with Groq, OpenAI (ChatGPT), Anthropic (Claude), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast, but you can plug in OpenAI, Claude, or Gemini for deeper analysis!
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
 - **Automated Daily Reports:** Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).
@@ -42,7 +42,8 @@ To keep this bot running 24/7 even when your computer is off, we highly recommen
    
    *Optional AI Providers (Choose one):*
    `export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"` (Free & Fast)
-   `export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"` (Detailed Analysis with ChatGPT)
+   `export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"` (ChatGPT)
+   `export ANTHROPIC_API_KEY="OPTIONAL_ANTHROPIC_KEY_HERE"` (Claude 3.5 Sonnet)
    `export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE"` (Google Gemini)
    
    `python main.py`
