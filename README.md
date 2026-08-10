@@ -21,8 +21,10 @@ Once the bot is running, use the following commands:
 
 ---
 
-## ☁️ How to Install & Run 24/7 (For Free)
-To keep this bot running 24/7 even when your computer is off, we highly recommend deploying it to **PythonAnywhere** (a completely free cloud server). Unlike Render or Heroku, PythonAnywhere will **never delete your SQLite database (persistent disk).**
+## ☁️ How to Install on a Cloud Server
+To keep this bot running without keeping your computer on, we recommend deploying it to **PythonAnywhere**. Unlike Render or Heroku, PythonAnywhere provides a persistent disk, meaning your SQLite database will never be deleted. 
+
+*Note: PythonAnywhere's free tier requires you to occasionally restart the script. For true 24/7 uninterrupted uptime, a $5/month "Hacker" plan or running it on a local Raspberry Pi/VPS is required.*
 
 ### Step 1: Get Your Bot Token
 1. Open Telegram and search for `@BotFather`.
