@@ -1,5 +1,11 @@
 import yfinance as yf
 
+def is_fund_code(ticker: str) -> bool:
+    return len(ticker) == 3 and ticker.isalpha()
+
+def is_stock_code(ticker: str) -> bool:
+    return not is_fund_code(ticker)
+
 def fetch_tefas_funds():
     import pytefas
     from datetime import datetime, timedelta
@@ -15,7 +21,7 @@ def get_current_price(ticker, df_tefas):
     current_price = None
     
     # Check if TEFAS Fund (3 letters)
-    if len(ticker) == 3 and ticker.isalpha():
+    if is_fund_code(ticker):
         if df_tefas is not None and not df_tefas.empty:
             fund_data = df_tefas[df_tefas['fund_code'] == ticker]
             if not fund_data.empty:
