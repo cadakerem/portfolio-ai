@@ -1,43 +1,44 @@
 # Portfolio AI Lite 📊
 
-Bu proje, karmaşık API'lere veya hantal Excel dosyalarına ihtiyaç duymadan, doğrudan Telegram üzerinden çalışan **Açık Kaynaklı bir Portföy Yöneticisidir**. 
-Yatırım yaptığınız Hisse Senetlerini ve TEFAS Yatırım Fonlarını mesajlaşarak ekleyebilir, güncel Kâr/Zarar durumunuzu anlık olarak cebinizden takip edebilirsiniz.
+An **Open Source Portfolio Manager** built directly on top of Telegram. No complex APIs, no clunky Excel files.
+Manage your Stocks and TEFAS Mutual Funds by chatting with your bot and track your live P&L (Profit & Loss) instantly from your phone.
 
-## 🚀 Özellikler
-- **TEFAS Fonları (`pytefas`):** YAY, MAC, TI3 gibi 3 harfli fon kodlarını otomatik tanır ve güncel fiyatını çeker.
-- **Hisse Senetleri (`yfinance`):** AAPL, TSLA, THYAO.IS gibi kodları otomatik tanır ve anlık fiyatını getirir.
-- **SQLite Veritabanı:** Kurulum gerektirmeyen, hafif yerel veritabanı.
-- **Ortalama Maliyet:** Aynı hisseden farklı fiyata tekrar alım yaptığınızda maliyetinizi otomatik düşürür/yükseltir (Weighted Average).
+## 🚀 Features
+- **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
+- **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
+- **SQLite Database:** Lightweight local database, zero setup required.
+- **Weighted Average Cost:** Automatically calculates your new average cost if you buy the same asset multiple times at different prices.
+- **Modular Architecture:** Clean code structure divided into core logic for easy contributions.
 
-## 🛠️ Komutlar
-Botu başlattıktan sonra şu komutları kullanabilirsiniz:
-- `/ekle THYAO.IS 10 250` (10 adet THYAO hissesini 250 TL maliyetle ekler)
-- `/ekle MAC 5000 0.12` (5000 pay MAC fonunu 0.12 kuruş maliyetle ekler)
-- `/sil THYAO.IS` (Varlığı portföyden siler)
-- `/portfoy` (Güncel piyasa verilerini çekerek Kâr/Zarar durumunu listeler)
+## 🛠️ Commands
+Once the bot is running, use the following commands:
+- `/add THYAO.IS 10 250` (Adds 10 shares of THYAO at 250 TL cost)
+- `/add MAC 5000 0.12` (Adds 5000 shares of MAC fund at 0.12 TL cost)
+- `/remove THYAO.IS` (Removes the asset from your portfolio)
+- `/portfolio` (Fetches live market data and lists your current P&L)
 
 ---
 
-## ☁️ Nasıl Kurulur ve 7/24 Çalıştırılır? (Ücretsiz)
-Bu botu bilgisayarınız kapalıyken bile 7/24 çalışması için **PythonAnywhere** adlı tamamen ücretsiz bulut sunucusuna kurmanızı tavsiye ederiz. Render veya Heroku'nun aksine PythonAnywhere SQLite veritabanınızı **asla silmez (kalıcı disk).**
+## ☁️ How to Install & Run 24/7 (For Free)
+To keep this bot running 24/7 even when your computer is off, we highly recommend deploying it to **PythonAnywhere** (a completely free cloud server). Unlike Render or Heroku, PythonAnywhere will **never delete your SQLite database (persistent disk).**
 
-### Adım 1: Bot Token'ı Alma
-1. Telegram'a girin ve `@BotFather` ı bulun.
-2. `/newbot` yazarak botunuza bir isim ve kullanıcı adı verin.
-3. Size verdiği **HTTP API Token**'ı kopyalayın.
+### Step 1: Get Your Bot Token
+1. Open Telegram and search for `@BotFather`.
+2. Type `/newbot` to create a new bot and give it a name.
+3. Copy the **HTTP API Token** provided by BotFather.
 
-### Adım 2: PythonAnywhere'e Yükleme
-1. [PythonAnywhere.com](https://www.pythonanywhere.com/)'a girip ücretsiz (Beginner) hesap açın.
-2. Sağ üstten **Files** sekmesine tıklayın.
-3. Bu projedeki `bot.py` ve `requirements.txt` dosyalarını yükleyin (Upload).
-4. **Consoles** sekmesine gidip bir **Bash** konsolu açın ve şunu yazarak kütüphaneleri kurun:
+### Step 2: Upload to PythonAnywhere
+1. Go to [PythonAnywhere.com](https://www.pythonanywhere.com/) and create a free Beginner account.
+2. Click on the **Files** tab at the top right.
+3. Upload all the files from this repository (including the `core` folder).
+4. Go to the **Consoles** tab, start a new **Bash** console, and install the requirements:
    `pip install -r requirements.txt`
 
-### Adım 3: Çalıştırma
-1. Yine Bash konsoluna şunu yazarak botunuzu başlatın:
-   `export TELEGRAM_BOT_TOKEN="BURAYA_TOKEN_YAPISTIRIN"`
-   `python bot.py`
-2. Ekranda "Bot çalışıyor..." yazısını gördüğünüzde işlem tamamdır! 
-3. Kendi botunuza gidip `/start` diyebilirsiniz.
+### Step 3: Run It
+1. In the same Bash console, run the following commands:
+   `export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"`
+   `python main.py`
+2. Once you see "Bot is running..." on the screen, you're done!
+3. Go to your bot on Telegram and type `/start`.
 
-*Not: PythonAnywhere ücretsiz hesaplarında kodun 7/24 aralıksız çalışması için "Always-on tasks" özelliği yoktur, bu nedenle bash sekmesinin açık kalması gerekebilir. Sadece günde 1 kez rapor almak isterseniz "Tasks" bölümünden günlük zamanlayıcı (Cron job) da kurabilirsiniz.*
+*Note: Free PythonAnywhere accounts do not support "Always-on tasks", so you may need to keep the bash console running or use the "Tasks" feature to schedule it as a daily cron job.*
