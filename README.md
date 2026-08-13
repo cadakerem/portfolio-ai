@@ -1,5 +1,8 @@
 # 📈 Portfolio AI (Telegram Finance Bot)
 
+<p align="center">
+  <img src="portfolio_ai_demo.gif" width="450" />
+</p>
 A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
 
 ## 🚀 Features
