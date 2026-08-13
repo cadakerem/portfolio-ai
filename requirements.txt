@@ -1,9 +1,9 @@
 pyTelegramBotAPI==4.14.0
 yfinance>=0.2.66
-groq==0.4.2
-openai==1.13.3
-google-generativeai==0.4.0
-anthropic==0.34.2
+groq>=1.6.0
+openai>=1.13.3
+google-generativeai>=0.4.0
+anthropic>=0.34.2
 pytefas==0.4.1
 pytest==8.0.0
 python-dotenv
