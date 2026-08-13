@@ -80,6 +80,8 @@ def get_portfolio_insight(portfolio_text: str) -> str:
             
     except Exception as e:
         import logging
+        import traceback
         logging.error(f"AI API Error: {e}")
+        return f"\n\n🤖 *AI Error:* `{e}`\n\n`{traceback.format_exc()}`"
         
     return ""
