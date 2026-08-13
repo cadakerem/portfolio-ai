@@ -1,25 +1,19 @@
 # 📈 Portfolio AI (Telegram Finance Bot)
 
-<table>
-  <tr>
-    <td width="60%">
-      <p>A Python-based financial data engine for tracking personal assets. It utilizes <b>yfinance</b> and <b>pytefas</b> for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.</p>
-      
-      <h2>🚀 Features</h2>
-      <ul>
-        <li><b>AI Portfolio Analysis:</b> Integrates dynamically with Groq, OpenAI (ChatGPT), Anthropic (Claude), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast!</li>
-        <li><b>TEFAS Mutual Funds (<code>pytefas</code>):</b> Automatically recognizes 3-letter fund codes (e.g., YAY, MAC) and fetches the latest prices.</li>
-        <li><b>Global & Local Stocks (<code>yfinance</code>):</b> Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.</li>
-        <li><b>Automated Daily Reports:</b> Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).</li>
-        <li><b>SQLite Database:</b> Lightweight local database, zero setup required.</li>
-        <li><b>Weighted Average Cost:</b> Automatically calculates your new average cost if you buy the same asset multiple times at different prices.</li>
-      </ul>
-    </td>
-    <td width="40%">
-      <img src="portfolio_ai_demo.gif" width="100%" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="portfolio_ai_demo.gif" width="450" />
+</p>
+
+A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
+
+## 🚀 Features
+- **AI Portfolio Analysis (Optional):** Integrates dynamically with Groq, OpenAI (ChatGPT), Anthropic (Claude), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast, but you can plug in OpenAI, Claude, or Gemini for deeper analysis!
+- **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
+- **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
+- **Automated Daily Reports:** Sends you a complete portfolio summary every morning and evening automatically (default is 10:15 and 17:45, but customizable).
+- **SQLite Database:** Lightweight local database, zero setup required.
+- **Weighted Average Cost:** Automatically calculates your new average cost if you buy the same asset multiple times at different prices.
+- **Modular Architecture:** Clean code structure divided into core logic for easy contributions.
 
 ## 🛠️ Commands
 Once the bot is running, use the following commands:
