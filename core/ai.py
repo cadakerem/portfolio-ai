@@ -73,7 +73,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                 ],
                 model="openai/gpt-oss-120b",
                 temperature=0.5,
-                max_tokens=150
+                max_tokens=500
             )
             insight = chat_completion.choices[0].message.content.strip()
             return f"\n\n🤖 *AI Insight (Groq):* {insight}"
