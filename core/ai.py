@@ -71,7 +71,7 @@ def get_portfolio_insight(portfolio_text: str) -> str:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
                 ],
-                model="groq/compound",
+                model="openai/gpt-oss-120b",
                 temperature=0.5,
                 max_tokens=150
             )
