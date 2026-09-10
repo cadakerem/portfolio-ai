@@ -1,12 +1,12 @@
-# 📈 Portfolio AI (Telegram Finance Bot)
+# Portfolio AI (Telegram Finance Bot)
 
 <p align="center">
   <img src="portfolio_ai_demo.gif" width="100%">
 </p>
 
-A Python-based financial data engine for tracking personal assets. It utilizes yfinance and pytefas for market intelligence, featuring a headless Telegram UI and dynamic background scheduling.
+A financial data engine for tracking personal assets using yfinance and pytefas, featuring a Telegram UI and background scheduling.
 
-## 🚀 Features
+## Features
 - **AI Portfolio Analysis (Optional):** Integrates dynamically with Groq, OpenAI (ChatGPT), Anthropic (Claude), and Google Gemini to give you a smart financial insight at the end of your reports. We recommend Groq because it is completely free and fast, but you can plug in OpenAI, Claude, or Gemini for deeper analysis!
 - **TEFAS Mutual Funds (`pytefas`):** Automatically recognizes 3-letter fund codes (e.g., YAY, MAC, TI3) and fetches the latest prices.
 - **Global & Local Stocks (`yfinance`):** Automatically recognizes stock tickers (e.g., AAPL, TSLA, THYAO.IS) and fetches real-time prices.
@@ -15,7 +15,7 @@ A Python-based financial data engine for tracking personal assets. It utilizes y
 - **Weighted Average Cost:** Automatically calculates your new average cost if you buy the same asset multiple times at different prices.
 - **Modular Architecture:** Clean code structure divided into core logic for easy contributions.
 
-## 🛠️ Commands
+## Commands
 Once the bot is running, use the following commands:
 - `/add THYAO.IS 10 250` (Adds 10 shares of THYAO at 250 TL cost)
 - `/add MAC 5000 0.12` (Adds 5000 shares of MAC fund at 0.12 TL cost)
@@ -23,14 +23,14 @@ Once the bot is running, use the following commands:
 - `/portfolio` (Fetches live market data and lists your current P&L)
 - `/settime 09:30 18:00` (Sets your personal daily report schedule to 09:30 and 18:00)
 
-## 🔒 Privacy & Access Control
+## Privacy & Access Control
 - **AI Privacy Note:** If you configure an AI API key (Groq/OpenAI/Claude/Gemini), your portfolio data (tickers, amounts, and prices) will be sent to that provider to generate the insight. If you leave the API key blank, no data leaves your server.
 - **Access Control (Private Mode):** By default, anyone who finds your bot can use it. To restrict it to just yourself:
   1. Open Telegram and message `@userinfobot` to get your numeric **User ID** (e.g. `123456789`).
   2. Open the `.env` file and set `ALLOWED_USER_IDS=123456789` (you can separate multiple IDs with commas).
   3. Now, the bot will completely ignore commands from any unauthorized strangers!
 
-## 🧠 Customizing AI Personality
+## Customizing AI Personality
 Want the AI to talk like a Wall Street broker, a cautious advisor, or maybe even Yoda? You can easily change its system prompt!
 1. Open the file `core/ai.py`
 2. Find line 16: `system_prompt = "You are a highly experienced and professional portfolio manager..."`
@@ -38,7 +38,7 @@ Want the AI to talk like a Wall Street broker, a cautious advisor, or maybe even
 
 ---
 
-## 🔑 Setup Step 1: Get Your Private Bot Token
+## Setup Step 1: Get Your Private Bot Token
 Before installing the bot anywhere, you need to create your own Telegram Bot so it runs privately just for you.
 1. Open Telegram and search for `@BotFather`.
 2. Send `/newbot` and follow the instructions to create your bot.
@@ -46,7 +46,7 @@ Before installing the bot anywhere, you need to create your own Telegram Bot so 
 
 ---
 
-## 💻 Setup Step 2: Choose Your Deployment
+## Setup Step 2: Choose Your Deployment
 
 ### Option A: Local Installation (For Developers)
 Want to run the bot on your own computer instead of the cloud?
