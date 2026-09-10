@@ -23,7 +23,7 @@ Once the bot is running, use the following commands:
 - `/portfolio` (Fetches live market data and lists your current P&L)
 - `/settime 09:30 18:00` (Sets your personal daily report schedule to 09:30 and 18:00)
 
-## Privacy & Access Control
+## 🛡️ Privacy & Access Control
 - **AI Privacy Note:** If you configure an AI API key (Groq/OpenAI/Claude/Gemini), your portfolio data (tickers, amounts, and prices) will be sent to that provider to generate the insight. If you leave the API key blank, no data leaves your server.
 - **Access Control (Private Mode):** By default, anyone who finds your bot can use it. To restrict it to just yourself:
   1. Open Telegram and message `@userinfobot` to get your numeric **User ID** (e.g. `123456789`).
@@ -38,7 +38,7 @@ Want the AI to talk like a Wall Street broker, a cautious advisor, or maybe even
 
 ---
 
-## Setup Step 1: Get Your Private Bot Token
+## 📦 Setup Step 1: Get Your Private Bot Token
 Before installing the bot anywhere, you need to create your own Telegram Bot so it runs privately just for you.
 1. Open Telegram and search for `@BotFather`.
 2. Send `/newbot` and follow the instructions to create your bot.
@@ -46,7 +46,7 @@ Before installing the bot anywhere, you need to create your own Telegram Bot so 
 
 ---
 
-## Setup Step 2: Choose Your Deployment
+## 📦 Setup Step 2: Choose Your Deployment
 
 ### Option A: Local Installation (For Developers)
 Want to run the bot on your own computer instead of the cloud?
@@ -73,9 +73,9 @@ export TELEGRAM_BOT_TOKEN="PASTE_YOUR_TOKEN_HERE"
 
 # 2. Export ONE of the following AI API Keys (Optional)
 export GROQ_API_KEY="OPTIONAL_GROQ_KEY_HERE"
-# export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE"
-# export ANTHROPIC_API_KEY="OPTIONAL_ANTHROPIC_KEY_HERE"
-# export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE"
+# export OPENAI_API_KEY="OPTIONAL_OPENAI_KEY_HERE
+# export ANTHROPIC_API_KEY="OPTIONAL_ANTHROPIC_KEY_HERE
+# export GEMINI_API_KEY="OPTIONAL_GEMINI_KEY_HERE
 
 # 3. Start the bot
 python main.py
