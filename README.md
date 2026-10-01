@@ -84,7 +84,7 @@ python main.py
 6. Once you see "Bot is running..." on the screen, you're done! Go to your bot on Telegram and type `/start`.
 
 ## 🧑‍💻 Developer & Contributions
-Developed by Kerem Barbaros Karnabat (@cadakerem).
+Developed by Kerem Barbaros Karnabat ([@cadakerem](https://github.com/cadakerem)).
 
 > **Note on Repository Structure:** This AI-integrated portfolio backend/frontend is structured with its main application logic in the `src/` directory. Next.js/React components manage the UI, while API routes handle the LLM integration.
 
