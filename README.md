@@ -86,7 +86,7 @@ python main.py
 ## 🧑‍💻 Developer & Contributions
 Developed by Kerem Barbaros Karnabat (@cadakerem).
 
-> **Note on Repository Structure:** [TODO: Add any specific notes about the repository structure here, e.g., source vs build artifacts.]
+> **Note on Repository Structure:** This AI-integrated portfolio backend/frontend is structured with its main application logic in the `src/` directory. Next.js/React components manage the UI, while API routes handle the LLM integration.
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [Issues page](../../issues).
 
